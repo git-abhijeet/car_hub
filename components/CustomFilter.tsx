@@ -9,19 +9,20 @@ import { CustomFilterProps } from "@/types";
 import { relative } from "path";
 import { updateSearchParams } from "@/utils";
 
-const CustomFilter = ({ title, options }: CustomFilterProps) => {
-    const router = useRouter();
+const CustomFilter = ({ title, options, setFilter }: CustomFilterProps) => {
+    // const router = useRouter();
     const [selected, setSelected] = useState(options[0]);
 
-    const handleUpdateParams = (e: { title: string, value: string }) => {
-        const newPathName = updateSearchParams(title, e.value.toLowerCase());
+    // const handleUpdateParams = (e: { title: string, value: string }) => {
+    //     const newPathName = updateSearchParams(title, e.value.toLowerCase());
 
-        router.push(newPathName);
-    }
+    //     router.push(newPathName);
+    // }
 
     return (
         <div className="w-fit">
-            <Listbox value={selected} onChange={(e) => { setSelected(e); handleUpdateParams(e); }} >
+            {/* <Listbox value={selected} onChange={(e) => { setSelected(e); handleUpdateParams(e); }} > */}
+            <Listbox value={selected} onChange={(e) => { setSelected(e); setFilter(e.value); }} >
                 <div className="relative z-10 w-fit">
                     <Listbox.Button className="custom-filter__btn">
                         <span className="block truncate">{selected.title}</span>
